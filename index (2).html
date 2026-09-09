@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Arena Stream</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+    background: #0b1020;
+    color: #eef2ff;
+    min-height: 100vh;
+  }
+  .wrap { max-width: 600px; margin: 0 auto; padding: 20px 16px 40px; }
+  header { text-align: center; padding: 20px 0 16px; }
+  .logo { font-size: 30px; font-weight: 800; }
+  .logo span { background: linear-gradient(90deg, #22d3ee, #a78bfa); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  header p { color: #9aa4c2; font-size: 14px; margin-top: 4px; }
+
+  .link-btn {
+    display: flex; align-items: center; gap: 14px;
+    background: rgba(255,255,255,.06);
+    border: 1px solid rgba(255,255,255,.12);
+    border-radius: 16px;
+    padding: 18px 16px;
+    margin-top: 12px;
+    text-decoration: none;
+    color: #fff;
+    transition: .2s;
+  }
+  .link-btn:hover { transform: translateY(-2px); border-color: #22d3ee; }
+  .link-btn .num {
+    width: 44px; height: 44px; border-radius: 12px; flex-shrink: 0;
+    background: linear-gradient(135deg, #22d3ee, #a78bfa);
+    display: grid; place-items: center;
+    font-weight: 800; font-size: 18px; color: #08111f;
+  }
+  .link-btn .txt { flex: 1; }
+  .link-btn .txt b { display: block; font-size: 17px; }
+  .link-btn .txt small { color: #9aa4c2; font-size: 13px; }
+  .link-btn .arrow { font-size: 22px; color: #22d3ee; }
+  .link-btn.disabled { opacity: .45; pointer-events: none; }
+
+  .tg {
+    display: flex; align-items: center; justify-content: center; gap: 10px;
+    background: #229ED9; color: #fff;
+    border-radius: 16px; padding: 17px; margin-top: 22px;
+    font-size: 17px; font-weight: 700; text-decoration: none;
+  }
+  .tg:hover { filter: brightness(1.1); }
+  footer { text-align: center; color: #9aa4c2; font-size: 12px; margin-top: 22px; }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header>
+    <div class="logo">⚡ Arena <span>Stream</span></div>
+    <p>Tap any button to watch</p>
+  </header>
+
+  <div id="links"></div>
+
+  <a class="tg" id="tgBtn" href="https://t.me/yourchannel" target="_blank">📢 Join Telegram Channel</a>
+
+  <footer>Arena Stream • Single File Website</footer>
+</div>
+
+<script>
+// =====================================================
+//  ★ EDIT ONLY THIS PART — YOUR 5 LINKS + TELEGRAM ★
+// =====================================================
+
+let title1 = "Match 1";
+let link1  = "https://example.com/link1";
+
+let title2 = "Match 2";
+let link2  = "https://example.com/link2";
+
+let title3 = "Match 3";
+let link3  = "https://example.com/link3";
+
+let title4 = "Match 4";
+let link4  = "https://example.com/link4";
+
+let title5 = "Match 5";
+let link5  = "https://example.com/link5";
+
+let telegramLink = "https://t.me/yourchannel";
+
+// =====================================================
+//  ⛔ DO NOT EDIT BELOW THIS LINE ⛔
+// =====================================================
+
+document.getElementById("tgBtn").href = telegramLink;
+
+let titles = [title1, title2, title3, title4, title5];
+let links  = [link1, link2, link3, link4, link5];
+
+let box = document.getElementById("links");
+for (let i = 0; i < 5; i++) {
+  let a = document.createElement("a");
+  let hasLink = links[i] && links[i].trim() !== "" && links[i] !== "#";
+  a.className = "link-btn" + (hasLink ? "" : " disabled");
+  a.href = hasLink ? links[i] : "#";
+  if (hasLink) a.target = "_blank";
+  a.innerHTML =
+    '<div class="num">' + (i + 1) + '</div>' +
+    '<div class="txt"><b>' + titles[i] + '</b><small>' + (hasLink ? 'Tap to open ▶' : 'Coming soon…') + '</small></div>' +
+    '<div class="arrow">›</div>';
+  box.appendChild(a);
+}
+</script>
+
+</body>
+</html>
